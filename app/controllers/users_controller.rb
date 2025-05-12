@@ -36,5 +36,5 @@ class UsersController < ApplicationController
   def accepted_sent_follow_requests
     FollowRequest.where({ :sender_id => @the_user.id}).where({ :status => "accepted"})
   end
-  
+
 end

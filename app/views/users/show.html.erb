@@ -9,11 +9,15 @@
   </div>
 
   <div>Followers</div>
-  <div style="margin-left: 40px;"></div>
+    <div style="margin-left: 40px;">
+    <%= @the_user.followers.count %>
+    </div>
   <div style="margin-left: 40px;"></div>
 
   <div>Following</div>
-  <div style="margin-left: 40px;"></div>
+    <div style="margin-left: 40px;">
+    <%= @the_user.leaders.count %>
+    </div>
 </div>
 
 <ul>
