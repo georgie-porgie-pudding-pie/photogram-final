@@ -4,8 +4,10 @@
 #
 #  id                     :bigint           not null, primary key
 #  avatar                 :string
+#  comments_count         :integer
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  likes_count            :integer
 #  name                   :string
 #  private                :boolean
 #  remember_created_at    :datetime

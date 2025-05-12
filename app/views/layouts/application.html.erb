@@ -7,17 +7,29 @@
 
   <body>
   <nav>
-    <a href="/users">All users</a>
-    <a href="/photos">All public photos</a>
-
+    <ul>
+      <li>
+        <a href="/users">All users</a>
+      </li>
+      <li>
+        <a href="/photos">All public photos</a>
+      </li>
     <% if current_user == nil%>
-    <a href="/users/sign_in">Sign in</a>
-    <a href="/users/sign_up">Sign up</a>
+      <li>
+        <a href="/users/sign_in">Sign in</a>
+      </li>
+      <li>
+        <a href="/users/sign_up">Sign up</a>
+      </li>
     <% else %>
-    <a href="/users/edit">Name</a>
-    <a href="/users/sign_up">Sign up</a>
+      <li>
+        <a href="/users/edit">Name</a>
+      </li>
+      <li>
+        <a href="/users/sign_out">Sign out</a>
+      </li>
     <% end %>
-
+    </ul>
   </nav>
 
   <% if notice.present? %>
