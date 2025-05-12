@@ -32,4 +32,16 @@ class User < ApplicationRecord
   has_many  :follow_requests_sent, class_name: "FollowRequest", foreign_key: "sender_id", dependent: :destroy
   has_many  :follow_requests_receieved, class_name: "FollowRequest", foreign_key: "recipient_id", dependent: :destroy
   has_many  :likes, class_name: "Like", foreign_key: "fan_id", dependent: :destroy
+  
+  has_many  :accepted_received_follow_requests, -> { where status: "accepted" }, class_name: "FollowRequest", foreign_key: :recipient_id
+  has_many  :accepted_sent_follow_requests, -> { where status: "accepted" }, class_name: "FollowRequest", foreign_key: :sender_id
+
+  has_many  :liked_photos, through: :likes, source: :photo
+  has_many  :commented_photos, through: :comments, source: :photo
+  
+  has_many  :followers, through: :accepted_received_follow_requests, source: :sender
+  has_many  :leaders, through: :accepted_sent_follow_requests, source: :recipient
+  has_many  :feed, through: :leaders, source: :photos
+  has_many  :discover, through: :leaders, source: :liked_photos
+
 end

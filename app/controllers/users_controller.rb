@@ -28,4 +28,13 @@ class UsersController < ApplicationController
   def follow_requests_receieved
     FollowRequest.where({ :recipient_id => @the_user.id})
   end
+
+  def accepted_received_follow_requests
+    FollowRequest.where({ :recipient_id => @the_user.id}).where({ :status => "accepted"})
+  end
+  
+  def accepted_sent_follow_requests
+    FollowRequest.where({ :sender_id => @the_user.id}).where({ :status => "accepted"})
+  end
+  
 end
