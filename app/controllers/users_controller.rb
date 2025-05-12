@@ -16,4 +16,8 @@ class UsersController < ApplicationController
 
     render({ :template => "users/show" })
   end
+
+  def photos
+    Photo.where({ :owner_id => @the_user.id })
+  end
 end

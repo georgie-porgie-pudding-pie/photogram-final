@@ -55,4 +55,8 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
   end
+
+  def comments
+    Comment.where({ :photo_id => @the_photo.id})
+  end
 end

@@ -2,7 +2,11 @@
 
 <div>
   <div>Private</div>
-  <div style="margin-left: 40px;"><%= @the_user.private %></div>
+  <div style="margin-left: 40px;">
+
+  <%= @the_user.private %>
+  
+  </div>
 
   <div>Followers</div>
   <div style="margin-left: 40px;"></div>
@@ -17,3 +21,66 @@
     <a href="/users/<%= @the_user.username %>">Profile</a>  
   </li>
 </ul>
+
+<div>
+  <div>
+    <table border="1">
+      <tr>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Caption
+        </th>
+
+        <th>
+          Posted
+        </th>
+
+        <th>
+          Likes
+        </th>
+
+      <th>
+        </th>
+      </tr>
+
+      <% @the_user.photos.each do |a_photo| %>
+      <tr>
+
+        <td>
+          <img src="<%= a_photo.image %>" width="300">
+        </td>
+
+        <td>
+          <% the_owner = User.where({ :id => a_photo.owner_id}).at(0) %>
+          <%= the_owner.username %>
+        </td>
+
+        <td>
+          <%= a_photo.caption %>
+
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_photo.created_at) %> ago
+        </td>
+        <td>
+        </td>
+
+        <td>
+          <a href="/photos/<%= a_photo.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
