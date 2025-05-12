@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
     the_photo = Photo.new
     the_photo.image = params.fetch("query_image")
     the_photo.caption = params.fetch("query_caption")
-    the_photo.owner_id = params.fetch("query_owner_id")
+    the_photo.owner_id = current_user.id
 
     if the_photo.valid?
       the_photo.save

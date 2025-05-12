@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "users#index"
 
+    get("/users", { :controller => "users", :action => "index" })
+    get("/users/:username", { :controller => "users", :action => "show" })
+
   # Routes for the Like resource:
 
   # CREATE

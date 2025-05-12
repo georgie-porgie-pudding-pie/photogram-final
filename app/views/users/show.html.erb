@@ -1,0 +1,19 @@
+<h1><%= @the_user.username %></h1>
+
+<div>
+  <div>Private</div>
+  <div style="margin-left: 40px;"><%= @the_user.private %></div>
+
+  <div>Followers</div>
+  <div style="margin-left: 40px;"></div>
+  <div style="margin-left: 40px;"></div>
+
+  <div>Following</div>
+  <div style="margin-left: 40px;"></div>
+</div>
+
+<ul>
+  <li>
+    <a href="/users/<%= @the_user.username %>">Profile</a>  
+  </li>
+</ul>

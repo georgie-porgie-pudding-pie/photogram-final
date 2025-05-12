@@ -6,8 +6,9 @@
   </div>
 </div>
 
+<% if current_user == nil %>
+<% else %>
 <hr>
-
 <div>
   <div>
     <h2>
@@ -20,7 +21,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="file" id="image_box" name="query_image">
       </div>
 
       <div>
@@ -28,32 +29,22 @@
           Caption
         </label>
 
-        <textarea id="caption_box" name="query_caption" rows="3"></textarea>
+        <textarea id="caption_box" name="query_caption" rows="3" placeholder="Enter a caption for the photo"></textarea>
       </div>
-
-      <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id">
-      </div>
-
       <button>
-        Create photo
+        Add photo
       </button>
     </form>
   </div>
 </div>
+<% end %>
+
 
 <hr>
 <div>
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Image
@@ -68,11 +59,11 @@
         </th>
 
         <th>
-          Created at
+          Posted
         </th>
 
         <th>
-          Updated at
+          Likes
         </th>
 
         <th>
@@ -81,12 +72,9 @@
 
       <% @list_of_photos.each do |a_photo| %>
       <tr>
-        <td>
-          <%= a_photo.id %>
-        </td>
 
         <td>
-          <%= a_photo.image %>
+          <img src="<%= a_photo.image %>" width="300">
         </td>
 
         <td>
@@ -94,14 +82,14 @@
         </td>
 
         <td>
-          <%= a_photo.owner_id %>
+          <% the_owner = User.where({ :id => a_photo.owner_id}).at(0) %>
+          <%= the_owner.username %>
         </td>
 
         <td>
           <%= time_ago_in_words(a_photo.created_at) %> ago
         </td>
         <td>
-          <%= time_ago_in_words(a_photo.updated_at) %> ago
         </td>
 
         <td>

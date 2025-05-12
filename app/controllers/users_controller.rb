@@ -6,4 +6,14 @@ class UsersController < ApplicationController
 
     render({ :template => "users/index" })
   end
+
+  def show
+    the_id = params.fetch("username")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/show" })
+  end
 end
