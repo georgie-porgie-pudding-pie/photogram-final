@@ -21,6 +21,21 @@
         <% end %>
       </td>
       <td>
+      <% if a_user.follow_requests_receieved.where({ :sender_id => current_user.id}).at(0) == nil %>
+          <form action="/insert_follow_request" method="post">
+            <div>
+              <input type="hidden" name="query_recipient_id" value="<%= a_user.id %>">
+            </div>
+            <button>
+              Follow
+            </button>
+          </form>
+      <% elsif a_user.follow_requests_receieved.where({ :sender_id => current_user.id}).at(0).status == "pending" %>
+      Request sent. <a href="delete_follow_request/<%= a_user.follow_requests_receieved.where({ :sender_id => current_user.id}).at(0).id %>">Cancel</a>
+      <% elsif a_user.follow_requests_receieved.where({ :sender_id => current_user.id}).at(0).status == "accepted" %>
+      <a href="delete_follow_request/<%= a_user.follow_requests_receieved.where({ :sender_id => current_user.id}).at(0).id %>">Unfollow</a>
+      <% else %>
+      <% end %>
       </td>
       <td>
         <a href="/users/<%= a_user.username %>">Show details</a>

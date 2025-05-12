@@ -20,4 +20,12 @@ class UsersController < ApplicationController
   def photos
     Photo.where({ :owner_id => @the_user.id })
   end
+
+  def follow_requests_sent
+    FollowRequest.where({ :sender_id => @the_user.id})
+  end
+  
+  def follow_requests_receieved
+    FollowRequest.where({ :recipient_id => @the_user.id})
+  end
 end
