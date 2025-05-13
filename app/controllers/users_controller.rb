@@ -17,6 +17,36 @@ class UsersController < ApplicationController
     render({ :template => "users/show" })
   end
 
+  def discover
+    the_id = params.fetch("username")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/discover" })
+  end
+
+  def feed
+    the_id = params.fetch("username")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/feed" })
+  end
+
+  def liked_photos
+    the_id = params.fetch("username")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/liked_photos" })
+  end
+
   def photos
     Photo.where({ :owner_id => @the_user.id })
   end

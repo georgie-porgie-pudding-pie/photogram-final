@@ -35,7 +35,7 @@
   </li>
 </ul>
 
-<h2>Own photos (<%= @the_user.photos.count %>)</h2>
+<h2>Discover (<%= @the_user.discover.count %>)</h2>
 <div>
   <div>
     <table border="1">
@@ -65,7 +65,7 @@
         </th>
       </tr>
 
-      <% @the_user.photos.each do |a_photo| %>
+      <% @the_user.discover.each do |a_photo| %>
       <tr>
 
         <td>
