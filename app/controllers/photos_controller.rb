@@ -15,6 +15,13 @@ class PhotosController < ApplicationController
 
     @the_photo = matching_photos.at(0)
 
+    @the_likes = Like.where({ :photo_id => @the_photo})
+
+    @the_comments = Comment.where({ :photo_id => @the_photo})
+
+
+    @the_fans = User.where({ :id => @the_likes.pluck(:fan_id)})
+  
     render({ :template => "photos/show" })
   end
 

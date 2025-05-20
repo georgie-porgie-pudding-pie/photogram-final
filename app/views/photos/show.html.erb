@@ -28,10 +28,55 @@
       </dd>
 
       <dt>
-        Created at
+        Posted
       </dt>
       <dd>
         <%= time_ago_in_words(@the_photo.created_at) %> ago
+      </dd>
+
+      <dt>
+        Likes Count
+      </dt>
+      <dd>
+        <%= @the_likes.count %>
+      </dd>
+
+      <dt>
+        Comments Count
+      </dt>
+      <dd>
+        <%= @the_comments.count %>
+      </dd>
+
+      <dt>
+        Fans
+      </dt>
+      <dd>
+        <%= @the_fans.map(&:username).join(", ") %>
+      </dd>
+    
+      <dt>
+        Add a fan
+      </dt>
+      <dd>
+      <% if current_user.id = @the_fans.map(&:id) %>
+
+        <% the_like=Like.where({ :fan_id => current_user.id}).where({ :photo_id => @the_photo.id}).at(0) %> 
+        <a href="/delete_like/<%= the_like.id %>">Unlike</a>
+
+
+      <% else %>
+        
+        <form action="/insert_like" method="post">
+        <div>
+          <input type="hidden" name="query_photo_id" value="<%= @the_photo.id %>">
+        </div>
+        <button>
+          Like
+        </button>
+
+      <% end %>
+
       </dd>
     </dl>
   </div>
@@ -74,7 +119,7 @@
 
 <div>
   <a href="/delete_photo/<%= @the_photo.id %>">
-    Delete photo
+    Delete this photo
   </a>
 </div>
 
